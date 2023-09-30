@@ -1,5 +1,7 @@
 package main
 
+// Import used packages, bufio and os are used for the line reader on `reader.ReadString()` to allow for the user to input a string with spaces.
+// Base `ReadString()` doesn't read in space characters properly so the task details wouldn't be properly defined.
 import (
 	"bufio"
 	"fmt"
@@ -7,15 +9,22 @@ import (
 	"time"
 )
 
+// main function is the entry point of the program. It displays a menu of options to the user and performs the corresponding action based on the user's input.
 func main() {
 	fmt.Printf("Welcome to your to-do list:\n")
+	// Declare menuItem variable to store user input.
 	var menuItem int
+	// Create a new reader (using the bufio package) to read user input from the console.
 	reader := bufio.NewReader(os.Stdin)
+	// Begin loop for while app runs (until the user chooses to exit).
 	for {
-		menu()
+		openMenu()
+		// Read user input.
 		fmt.Scanln(&menuItem)
+		// Perform action based on user input
 		switch menuItem {
 		case 1:
+			// Create a new task
 			fmt.Println("Enter task name:")
 			name, _ := reader.ReadString('\n')
 			fmt.Println("Enter task date:")
@@ -24,8 +33,10 @@ func main() {
 			status, _ := reader.ReadString('\n')
 			createNewTask(name, date, status)
 		case 2:
+			// View all tasks
 			viewTasks()
 		case 3:
+			// Update a task
 			viewTasks()
 			var taskNumber int
 			fmt.Println("Enter task number to update:")
@@ -43,6 +54,7 @@ func main() {
 			status, _ := reader.ReadString('\n')
 			updateTask(taskNumber-1, name, date, status)
 		case 4:
+			// Remove a task
 			var taskNumber int
 			fmt.Println("Enter task number to remove:")
 			fmt.Scanln(&taskNumber)
@@ -53,15 +65,17 @@ func main() {
 			}
 			removeTask(taskNumber - 1)
 		case 5:
+			// Exit the program
 			fmt.Println("Exiting...")
 			return
 		default:
+			// Invalid input
 			fmt.Println("Invalid choice. Please choose a number between 1 and 5.")
 		}
 	}
 }
 
-func menu() {
+func openMenu() {
 	fmt.Printf("Please choose an action (1-5):\n")
 	fmt.Printf("1. Create new task\n")
 	fmt.Printf("2. View all tasks\n")
