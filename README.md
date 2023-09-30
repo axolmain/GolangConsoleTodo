@@ -4,7 +4,7 @@ This is a very basic GoLang to-do list creator that runs in your terminal when r
 
 Coming from a C#/Python background I wanted to just create a simple project to learn the basics of Golang for later knowledge growth.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/ABbMofRhzfM)
 
 # Development Environment
 
